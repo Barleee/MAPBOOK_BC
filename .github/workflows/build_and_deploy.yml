@@ -18,9 +18,9 @@ jobs:
     environment: ${{ github.ref_name }}
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: building and setting docker enviroment on serwer
+    - name: building and setting docker enviroment on serwer
 
     run:
       docker-compose -f ./docker-compose/docker-compose.yml -p mapbook_bc up --build -d

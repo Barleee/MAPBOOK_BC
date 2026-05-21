@@ -1,8 +1,11 @@
+from os import remove
 from tkinter import *
-
+from uzytkownicy import *
 root=Tk()
 root.title("Mapbook_BC")
 root.geometry("1024x760")
+
+
 
 # RAMKI
 ramka_lista_obiektow = Frame(root)
@@ -21,9 +24,9 @@ label_lista_obiektow = Label(ramka_lista_obiektow, text="Lista użytkowników: "
 listbox_lista_obiektow = Listbox(ramka_lista_obiektow)
 # tworzenei guzików, buttonów pod tabelą ( rodzic ramka_lista_obiektow, tam będzie wyskakiwać
 
-button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly ")
-button_usuwanie_obiektu = Button(ramka_lista_obiektow, text="Usuwanie")
-button_edytowanie_obiektow =   Button(ramka_lista_obiektow, text="Edytowanie")
+button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly ", command= show_user_details)
+button_usuwanie_obiektu = Button(ramka_lista_obiektow, text="Usuwanie",command = remove_user)
+button_edytowanie_obiektow =   Button(ramka_lista_obiektow, text="Edytowanie", command = edit_user)
 # Definiowanie położenia działa na podstawie szereg x kolumna
 
 label_lista_obiektow.grid(row=0, column=0)
@@ -53,13 +56,13 @@ entry_liczba_postow.grid(row=3, column=1)
 entry_lokalizacja=Entry(ramka_formularz)
 entry_lokalizacja.grid(row=4, column=1)
 
-button_dodaj_uzytkownika = Button(ramka_formularz, text="Dodaj użytkownika")
+button_dodaj_uzytkownika = Button(ramka_formularz, text="Dodaj użytkownika", command = add_user)
 button_dodaj_uzytkownika.grid(row=5, column=1, columnspan=2)
 
 # Szczegóły obiektu
 
 labe_szczegoly_obiektu = Label (ramka_szczegoly_obiektu, text="Szczegoly obiektu")
-labe_szczegoly_obiektu.grid(row=0, column=2)
+labe_szczegoly_obiektu.grid(row=0, column=3)
 
 # Etykiety
 label_imie_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Imie")
@@ -80,6 +83,14 @@ label_liczba_postow_obiektu.grid(row=1, column=4)
 label_liczba_postow_obiektu_wartosc.grid(row=1, column=5)
 label_lokalizacja_obiektu.grid(row=1, column=6)
 label_liczba_postow_obiektu_wartosc.grid(row=1, column=7)
+
+
+
+
+
+
+
+
 
 
 root.mainloop()

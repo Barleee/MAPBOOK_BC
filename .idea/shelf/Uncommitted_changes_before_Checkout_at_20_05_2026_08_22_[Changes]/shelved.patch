@@ -1,0 +1,59 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Definicja prostej struktury danych obejmującej przykładowego użytkownika\r\n\r\nfrom mapbook_lib.model import users\r\nfrom mapbook_lib.controller import read_users, add_user, remove_user, update_user_post, update_user\r\n\r\ndef main():\r\n\r\n\r\n    while True:\r\n        print(\"===========MENU===========\")\r\n        print(\"0 - zakończ program\")\r\n        print(\"1 - wyświetl znajomych\")\r\n        print(\"2 - dodanie znajomego\")\r\n        print(\"3 - usuń znajomego\")\r\n        print(\"4 - aktualizacja znajomego\")\r\n        print(\"5 - aktualizacja posta\")\r\n        choice=input(\"Wybierz opcje menu:  \")\r\n        print(f\"Wybrano opcje {choice}\")\r\n        if choice == \"0\":\r\n            break\r\n\r\n        if choice == \"1\":\r\n            read_users(users)\r\n\r\n        if choice == \"2\":\r\n            add_user(users)\r\n\r\n        if choice == \"3\":\r\n            remove_user(users)\r\n\r\n        if choice == \"4\":\r\n            update_user(users)\r\n\r\n        if choice == \"5\":\r\n            update_user_post(users)\r\n\r\nif __name__ == \"__main__\":\r\n    main()\r\n
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 9208863e311f7042d4c9abecb5dcdf67804a6203)
++++ b/main.py	(date 1779179913394)
+@@ -14,6 +14,7 @@
+         print("3 - usuń znajomego")
+         print("4 - aktualizacja znajomego")
+         print("5 - aktualizacja posta")
++        print("6 - mapa znajomych")
+         choice=input("Wybierz opcje menu:  ")
+         print(f"Wybrano opcje {choice}")
+         if choice == "0":
+@@ -34,5 +35,8 @@
+         if choice == "5":
+             update_user_post(users)
+ 
++        if choice == "6":
++            
++
+ if __name__ == "__main__":
+     main()
+Index: mapbook_lib/controller.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\ndef read_users(users_data:list)->None:\r\n    for user in users_data:\r\n        print(f\"Twój znajomy {user[\"Name\"]}, z miejscowośći {user[\"Location\"]}, zamieścił post {user[\"Posts\"][-1]}\")\r\nread_users(users)\r\n\r\ndef add_user(users_data:list)->None:\r\n    users_data.append({\"Name\":input(\"Podaj imię  \"),\"Location\":input(\"Twoja Lokalizacja  \"), \"Posts\":input(\"Dołączono do znajomych  \")})\r\n\r\ndef remove_user(users_data:list)->None:\r\n    user_to_remove = input(\"Podaj imię znajomego do usunięcia  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_remove:\r\n            user.data.remove(user)\r\n\r\n\r\ndef update_user(users_data:list)->None:\r\n    user_to_update = input(\"Podaj imię znajomego do updatu  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_update:\r\n            user[\"Name\"] ==(input(\"Podaj nowe imię użytkownika \"),\r\n            user[\"Location\"] ==(input(\"Podaj nową lokalizacje \"),\r\n            user[\"Location\"] ==(input(\"Podaj nowe lokalizacje \")\r\ndef update_user_post(users_data:list)->None:\r\n    user_to_update = input(\"Podaj imię znajomego do updatu  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_update:\r\n            user [\"Posts\"].append(input(\"Co słychać  \"))\r\n\r\n
+===================================================================
+diff --git a/mapbook_lib/controller.py b/mapbook_lib/controller.py
+--- a/mapbook_lib/controller.py	(revision 9208863e311f7042d4c9abecb5dcdf67804a6203)
++++ b/mapbook_lib/controller.py	(date 1779179220261)
+@@ -1,8 +1,7 @@
+ 
+ def read_users(users_data:list)->None:
+     for user in users_data:
+-        print(f"Twój znajomy {user["Name"]}, z miejscowośći {user["Location"]}, zamieścił post {user["Posts"][-1]}")
+-read_users(users)
++        print(f"Twój znajomy {user['Name']}, z miejscowości {user['Location']}, zamieścił post {user['Posts'][-1]}")
+ 
+ def add_user(users_data:list)->None:
+     users_data.append({"Name":input("Podaj imię  "),"Location":input("Twoja Lokalizacja  "), "Posts":input("Dołączono do znajomych  ")})
+@@ -18,11 +17,12 @@
+     user_to_update = input("Podaj imię znajomego do updatu  ")
+     for user in users_data:
+         if user["Name"] == user_to_update:
+-            user["Name"] ==(input("Podaj nowe imię użytkownika "),
+-            user["Location"] ==(input("Podaj nową lokalizacje "),
+-            user["Location"] ==(input("Podaj nowe lokalizacje ")
++            user["Name"] = input("Podaj nowe imię użytkownika: ")
++            user["Location"] = input("Podaj nową lokalizację: ")
++
+ def update_user_post(users_data:list)->None:
+     user_to_update = input("Podaj imię znajomego do updatu  ")
++
+     for user in users_data:
+         if user["Name"] == user_to_update:
+             user ["Posts"].append(input("Co słychać  "))
