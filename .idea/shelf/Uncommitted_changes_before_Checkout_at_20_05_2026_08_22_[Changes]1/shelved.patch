@@ -1,0 +1,29 @@
+Index: NOTATNIK.py
+===================================================================
+diff --git a/NOTATNIK.py b/NOTATNIK.py
+new file mode 100644
+--- /dev/null	(date 1778144821667)
++++ b/NOTATNIK.py	(date 1778144821667)
+@@ -0,0 +1,7 @@
++from bs4 import BeautifulSoup
++import requests
++
++uml = "https://pl.wikipedia.org/wiki/Łomża"
++responses = requests.get(uml, headers={'User-Agent': 'Mozilla/5.0'})
++print(responses)
++
+Index: mapbook_lib/mapa_znajomych.py
+===================================================================
+diff --git a/mapbook_lib/mapa_znajomych.py b/mapbook_lib/mapa_znajomych.py
+new file mode 100644
+--- /dev/null	(date 1779180060348)
++++ b/mapbook_lib/mapa_znajomych.py	(date 1779180060348)
+@@ -0,0 +1,7 @@
++from bs4 import BeautifulSoup
++import requests
++import folium
++
++def get_coordinates(location: str) -> list
++    url =f"https://pl.wikipedia.org/wiki/{location}"
++    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+\ No newline at end of file
