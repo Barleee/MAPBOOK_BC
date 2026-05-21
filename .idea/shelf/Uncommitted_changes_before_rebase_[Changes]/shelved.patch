@@ -1,0 +1,1165 @@
+Index: mapbook_lib/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from tkinter import *\r\n\r\nroot=Tk()\r\nroot.title(\"Mapbook_BC\")\r\nroot.geometry(\"1024x760\")\r\n\r\n# RAMKI\r\nramka_lista_obiektow = Frame(root)\r\n\r\nramka_formularz = Frame(root)\r\n\r\nramka_szczegoly_obiektu = Frame(root)\r\n\r\nramka_lista_obiektow.grid(row=0, column=0)\r\nramka_formularz.grid(row=0, column=1)\r\nramka_szczegoly_obiektu.grid(row=1, column=0, columnspan=2)\r\n\r\n# RAMkA LiSTA OBIEKTÓW\r\n\r\nlabel_lista_obiektow = Label(ramka_lista_obiektow, text=\"Lista użytkowników: \")\r\nlistbox_lista_obiektow = Listbox(ramka_lista_obiektow)\r\n# tworzenei guzików, buttonów pod tabelą ( rodzic ramka_lista_obiektow, tam będzie wyskakiwać\r\n\r\nbutton_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text=\"Pokaz szczegoly \")\r\nbutton_usuwanie_obiektu = Button(ramka_lista_obiektow, text=\"Usuwanie\")\r\nbutton_edytowanie_obiektow =   Button(ramka_lista_obiektow, text=\"Edytowanie\")\r\n# Definiowanie położenia działa na podstawie szereg x kolumna\r\n\r\nlabel_lista_obiektow.grid(row=0, column=0)\r\nlistbox_lista_obiektow.grid(row=1, column=0)\r\nbutton_pokaz_szczegoly_obiektu.grid(row=2, column=0)\r\nbutton_usuwanie_obiektu.grid(row=2, column=1)\r\nbutton_edytowanie_obiektow.grid(row=2, column=2)\r\n# Ramka forumlarza 1 ramka 2 polozenie jej\r\nlabel_formularz = Label(ramka_formularz, text=\"Formularz: \")\r\nlabel_formularz.grid(row=0, column=0)\r\nlabel_imie = Label(ramka_formularz, text=\"Imię\")\r\nlabel_imie.grid(row=1, column=0)\r\nlabel_nazwisko =Label(ramka_formularz, text=\"Nazwisko\")\r\nlabel_nazwisko.grid(row=2, column=0)\r\nlabel_liczba_postow = Label(ramka_formularz, text=\"Liczba postów\")\r\nlabel_liczba_postow.grid(row=3, column=0)\r\nlabel_lokalizacja = Label(ramka_formularz, text=\"Lokalizacja\")\r\nlabel_lokalizacja.grid(row=4, column=0)\r\n\r\n#Wprowadzanie danych\r\nentry_imie=Entry(ramka_formularz)\r\nentry_imie.grid(row=1, column=1)\r\nentry_nazwisko=Entry(ramka_formularz)\r\nentry_nazwisko.grid(row=2, column=1)\r\nentry_liczba_postow=Entry(ramka_formularz)\r\nentry_liczba_postow.grid(row=3, column=1)\r\nentry_lokalizacja=Entry(ramka_formularz)\r\nentry_lokalizacja.grid(row=4, column=1)\r\n\r\nbutton_dodaj_uzytkownika = Button(ramka_formularz, text=\"Dodaj użytkownika\")\r\nbutton_dodaj_uzytkownika.grid(row=5, column=1, columnspan=2)\r\n\r\n# Szczegóły obiektu\r\n\r\nlabe_szczegoly_obiektu = Label (ramka_szczegoly_obiektu, text=\"Szczegoly obiektu\")\r\nlabe_szczegoly_obiektu.grid(row=0, column=2)\r\n\r\n# Etykiety\r\nlabel_imie_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text=\"Imie\")\r\nlabel_imie_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text=\"Wartosc\")\r\nlabel_nazwisko_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text=\"Nazwisko\")\r\nlabel_nazwisko_szczegoly_obiektu_wartosc =  Label(ramka_szczegoly_obiektu, text=\"Wartosc\")\r\nlabel_liczba_postow_obiektu = Label(ramka_szczegoly_obiektu, text=\"Liczba Postów\")\r\nlabel_liczba_postow_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text=\"Wartosc\")\r\nlabel_lokalizacja_obiektu = Label(ramka_szczegoly_obiektu,text=\"Lokalizacja\")\r\nlabel_lokalizacja_obiektu_wartosc = Label(ramka_szczegoly_obiektu,text=\"Wartosc\")\r\n\r\n\r\nlabel_imie_szczegoly_obiektu.grid(row=1, column=0)\r\nlabel_imie_szczegoly_obiektu_wartosc.grid(row=1, column=1)\r\nlabel_nazwisko_szczegoly_obiektu.grid(row=1, column=2)\r\nlabel_nazwisko_szczegoly_obiektu_wartosc.grid(row=1, column=3)\r\nlabel_liczba_postow_obiektu.grid(row=1, column=4)\r\nlabel_liczba_postow_obiektu_wartosc.grid(row=1, column=5)\r\nlabel_lokalizacja_obiektu.grid(row=1, column=6)\r\nlabel_liczba_postow_obiektu_wartosc.grid(row=1, column=7)\r\n\r\n\r\nroot.mainloop()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/mapbook_lib/main.py b/mapbook_lib/main.py
+--- a/mapbook_lib/main.py	(revision 111be04f9de3c0e279e1bed6a94aaa8b02c3ab51)
++++ b/mapbook_lib/main.py	(date 1779265644423)
+@@ -1,9 +1,12 @@
++from os import remove
+ from tkinter import *
+-
++from uzytkownicy import *
+ root=Tk()
+ root.title("Mapbook_BC")
+ root.geometry("1024x760")
+ 
++
++
+ # RAMKI
+ ramka_lista_obiektow = Frame(root)
+ 
+@@ -21,9 +24,9 @@
+ listbox_lista_obiektow = Listbox(ramka_lista_obiektow)
+ # tworzenei guzików, buttonów pod tabelą ( rodzic ramka_lista_obiektow, tam będzie wyskakiwać
+ 
+-button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly ")
+-button_usuwanie_obiektu = Button(ramka_lista_obiektow, text="Usuwanie")
+-button_edytowanie_obiektow =   Button(ramka_lista_obiektow, text="Edytowanie")
++button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly ", command= show_user_details)
++button_usuwanie_obiektu = Button(ramka_lista_obiektow, text="Usuwanie",command = remove_user)
++button_edytowanie_obiektow =   Button(ramka_lista_obiektow, text="Edytowanie", command = edit_user)
+ # Definiowanie położenia działa na podstawie szereg x kolumna
+ 
+ label_lista_obiektow.grid(row=0, column=0)
+@@ -53,13 +56,13 @@
+ entry_lokalizacja=Entry(ramka_formularz)
+ entry_lokalizacja.grid(row=4, column=1)
+ 
+-button_dodaj_uzytkownika = Button(ramka_formularz, text="Dodaj użytkownika")
++button_dodaj_uzytkownika = Button(ramka_formularz, text="Dodaj użytkownika", command = add_user)
+ button_dodaj_uzytkownika.grid(row=5, column=1, columnspan=2)
+ 
+ # Szczegóły obiektu
+ 
+ labe_szczegoly_obiektu = Label (ramka_szczegoly_obiektu, text="Szczegoly obiektu")
+-labe_szczegoly_obiektu.grid(row=0, column=2)
++labe_szczegoly_obiektu.grid(row=0, column=3)
+ 
+ # Etykiety
+ label_imie_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Imie")
+@@ -82,4 +85,12 @@
+ label_liczba_postow_obiektu_wartosc.grid(row=1, column=7)
+ 
+ 
++
++
++
++
++
++
++
++
+ root.mainloop()
+Index: README.md
+===================================================================
+diff --git a/README.md b/README.md
+deleted file mode 100644
+--- a/README.md	(revision 111be04f9de3c0e279e1bed6a94aaa8b02c3ab51)
++++ /dev/null	(revision 111be04f9de3c0e279e1bed6a94aaa8b02c3ab51)
+@@ -1,2 +0,0 @@
+-# MAPBOOK_BC
+-facebook for maps
+Index: mapbook_lib/uzytkownicy.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/mapbook_lib/uzytkownicy.py b/mapbook_lib/uzytkownicy.py
+new file mode 100644
+--- /dev/null	(date 1779266488834)
++++ b/mapbook_lib/uzytkownicy.py	(date 1779266488834)
+@@ -0,0 +1,277 @@
++# # interakcje z obiektami/tabelami/itp Dodanie do innego podfolderu dodanie from *
++# from tkinter import *
++# from main import *
++#
++# users:list = []
++#
++# class User:
++#     def __init__(self, imie: str, nazwisko:str, posty: int, lokalizacja:str):
++#         self.imie = imie
++#         self.nazwisko = nazwisko
++#         self.posty = posty
++#         self.lokalizacja = lokalizacja
++#
++# def show_user()->None:
++#     listbox_lista_obiektow.delete(0, END)
++#     for idx, user in enumerate(users):
++#         listbox_lista_obiektow.insert(END, user.imie)
++#
++# def remove_user()->None:
++#     i = listbox_lista_obiektow.index(ACTIVE)
++#     users.pop(i)
++#
++#     show_user()
++#
++# def show_user_details()->None:
++#     i = listbox_lista_obiektow.index(ACTIVE)
++#     imie = users[i].imie
++#     nazwisko = users[i].nazwisko
++#     posty = users[i].posty
++#     lokalizacja = users[i].lokalizacja
++#
++#     label_imie_szczegoly_obiektu_wartosc.config(text=imie)
++#     label_nazwisko_szczegoly_obiektu_wartosc.config(text=nazwisko)
++#     label_liczba_postow_obiektu_wartosc.config(text=posty)
++#     label_lokalizacja_obiektu_wartosc.config(text=lokalizacja)
++#
++# def edit_user()->None:
++#     i = listbox_lista_obiektow.index(ACTIVE)
++#     imie = users[i].imie
++#     nazwisko = users[i].nazwisko
++#     posty = users[i].posty
++#     lokalizacja = users[i].lokalizacja
++#
++#     entry_imie.inster(0,imie)
++#     entry_nazwisko.insert(0, nazwisko)
++#     entry_liczba_postow.insert(0, posty)
++#     entry_lokalizacja.insert(0, lokalizacja)
++#
++#     button_dodaj_uzytkownika.config(text="Zapisz zmiany", command=lambda:update_user(i) )
++#     show_user()
++#
++# def update_user(i):
++#     users[i].imie=entry_imie.get()
++#     users[i].nazwisko=entry_nazwisko.get()
++#     users[i].possty = entry_liczba_postow.get()
++#     users[i].lokalizacja=entry_lokalizacja.get()
++#
++#     button_dodaj_uzytkownika.config(text="Dodaj użytkownika", command=add_user)
++#
++# def add_user():
++#     name = entry_imie.get()
++#     surname = entry_nazwisko.get()
++#     posts = entry_liczba_postow.get()
++#     localization = entry_lokalizacja.get()
++#
++#     new_users = User(imie=name, nazwisko=surname, posty=int(posts), lokalizacja=localization)
++#     users.append(new_users)
++#     entry_imie.delete(0, END)
++#     entry_nazwisko.delete(0, END)
++#     entry_liczba_postow.delete(0, END)
++#     entry_lokalizacja.delete(0, END)
++#
++#     entry_imie.focus()
++#
++#     show_user()
++
++from tkinter import *
++import tkinter
++import tkintermapview
++
++users:list = []
++
++class User:
++    def __init__(self, imie: str, nazwisko: str, posty: int, lokalizacja: str):
++        self.imie = imie
++        self.nazwisko = nazwisko
++        self.posty = posty
++        self.lokalizacja = lokalizacja
++
++def show_users()-> None:
++    listbox_lista_obiektow.delete(0, END)
++    for idx, user in enumerate(users):
++        listbox_lista_obiektow.insert(idx, user.imie)
++
++def remove_user()-> None:
++    i = listbox_lista_obiektow.index(ACTIVE)
++    users.pop(i)
++    show_users()
++
++def show_user_details():
++    i = listbox_lista_obiektow.index(ACTIVE)
++    imie = users[i].imie
++    nazwisko = users[i].nazwisko
++    posty = users[i].posty
++    lokalizacja = users[i].lokalizacja
++
++    label_imie_szczegoly_obiektu_wartosc.config(text=imie)
++    label_nazwisko_szczegoly_obiektu_wartosc.config(text=nazwisko)
++    label_liczba_postow_szczegoly_obiektu_wartosc.config(text=posty)
++    label_lokalizacja_szczegoly_obiektu_wartosc.config(text=lokalizacja)
++
++
++def edit_user():
++    i = listbox_lista_obiektow.index(ACTIVE)
++    imie = users[i].imie
++    nazwisko = users[i].nazwisko
++    posty = users[i].posty
++    lokalizacja = users[i].lokalizacja
++
++    entry_imie.insert(0, imie)
++    entry_nazwisko.insert(0, nazwisko)
++    entry_liczba_postow.insert(0, posty)
++    entry_lokalizacja.insert(0, lokalizacja)
++
++
++    button_dodaj_uzytkownika.config(text= "Zapisz zmiany", command=lambda: update_user(i))
++
++def update_user(i):
++    users[i].imie = entry_imie.get()
++    users[i].nazwisko = entry_nazwisko.get()
++    users[i].posty = entry_liczba_postow.get()
++    users[i].location = entry_lokalizacja.get()
++
++    button_dodaj_uzytkownika.config(text= "Dodaj uzytkownika", command=add_user)
++    entry_imie.delete(0, END)
++    entry_nazwisko.delete(0, END)
++    entry_liczba_postow.delete(0, END)
++    entry_lokalizacja.delete(0, END)
++
++    entry_imie.focus()
++    show_users()
++
++
++
++
++
++def add_user():
++    name = entry_imie.get()
++    surname = entry_nazwisko.get()
++    posts = entry_liczba_postow.get()
++    lokalizacja = entry_lokalizacja.get()
++
++    # print(name, surname, posts, lokalizacja)
++    new_user = User(imie=name, nazwisko=surname, posty=int(posts), lokalizacja=lokalizacja)
++    users.append(new_user)
++    # print(users)
++
++    entry_imie.delete(0, END)
++    entry_nazwisko.delete(0, END)
++    entry_liczba_postow.delete(0, END)
++    entry_lokalizacja.delete(0, END)
++
++    entry_imie.focus()
++    show_users()
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++root = Tk()
++
++root.title("Mapbook_AB")
++root.geometry("1024x760")
++
++
++# FRAME
++ramka_lista_obiektow = Frame(root)
++ramka_formularz = Frame(root)
++ramka_szczegoly_obiektu = Frame(root)
++
++ramka_lista_obiektow.grid(row=0, column=0)
++ramka_formularz.grid(row=0, column=1)
++ramka_szczegoly_obiektu.grid(row=1, column=0, columnspan=2)
++
++# RAMKA LISTA OBIEKTOW
++label_lista_obiektow = Label(ramka_lista_obiektow, text="Lista znajomych: ")
++listbox_lista_obiektow = Listbox(ramka_lista_obiektow)
++
++button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly", command = show_user_details)
++button_usun_obiekt = Button(ramka_lista_obiektow, text="Usun", command=remove_user)
++button_edytuj_obiekt = Button(ramka_lista_obiektow, text="Edytuj", command = edit_user)
++
++label_lista_obiektow.grid(row=0, column=0)
++listbox_lista_obiektow.grid(row=1, column=0)
++button_pokaz_szczegoly_obiektu.grid(row=2, column=0)
++button_usun_obiekt.grid(row=2, column=1)
++button_edytuj_obiekt.grid(row=2, column=2)
++
++# RAMKA FORMULARZ
++
++label_formularz = Label(ramka_formularz, text="Formularz: ")
++label_imie = Label(ramka_formularz, text="Imię: ")
++label_nazwisko = Label(ramka_formularz, text="Nazwisko: ")
++label_liczba_postow = Label(ramka_formularz, text="Liczba postow: ")
++label_lokalizacja = Label(ramka_formularz, text="Lokalizacja: ")
++
++label_formularz.grid(row=0, column=0)
++label_imie.grid(row=1, column=0)
++label_nazwisko.grid(row=2, column=0)
++label_liczba_postow.grid(row=3, column=0)
++label_lokalizacja.grid(row=4, column=0)
++
++
++entry_imie = Entry(ramka_formularz)
++entry_nazwisko = Entry(ramka_formularz)
++entry_liczba_postow = Entry(ramka_formularz)
++entry_lokalizacja = Entry(ramka_formularz)
++
++entry_imie.grid(row=1, column=1)
++entry_nazwisko.grid(row=2, column=1)
++entry_liczba_postow.grid(row=3, column=1)
++entry_lokalizacja.grid(row=4, column=1)
++
++button_dodaj_uzytkownika = Button(ramka_formularz, text = "Dodaj użytkownika", command = add_user)
++button_dodaj_uzytkownika.grid(row=5, column=0, columnspan=2)
++
++# SZCZEGOLY OBIEKTU
++
++label_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text = "Szczegóły użytkownika")
++label_imie_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text = "Imię: ")
++label_imie_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text = "...")
++label_nazwisko_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text = "Nazwisko: ")
++label_nazwisko_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text = "...")
++label_liczba_postow_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text = "Liczba postów: ")
++label_liczba_postow_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text = "...")
++label_lokalizacja_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text = "Lokalizacja: ")
++label_lokalizacja_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text = "...")
++
++
++
++label_szczegoly_obiektu.grid(row=0, column=0)
++label_imie_szczegoly_obiektu.grid(row=1, column=0)
++label_imie_szczegoly_obiektu_wartosc.grid(row=1, column=1)
++label_nazwisko_szczegoly_obiektu.grid(row=1, column=2)
++label_nazwisko_szczegoly_obiektu_wartosc.grid(row=1, column=3)
++label_liczba_postow_szczegoly_obiektu.grid(row=1, column=4)
++label_liczba_postow_szczegoly_obiektu_wartosc.grid(row=1, column=5)
++label_lokalizacja_szczegoly_obiektu.grid(row=1, column=6)
++label_lokalizacja_szczegoly_obiektu_wartosc.grid(row=1, column=7)
++
++
++#
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++root.mainloop()
+\ No newline at end of file
+Index: zapasowy.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/zapasowy.py b/zapasowy.py
+new file mode 100644
+--- /dev/null	(date 1779269329197)
++++ b/zapasowy.py	(date 1779269329197)
+@@ -0,0 +1,204 @@
++from tkinter import *
++import tkintermapview
++import requests
++from bs4 import BeautifulSoup
++
++users: list = []
++
++
++class User:
++    def __init__(self, imie: str, nazwisko: str, posty: int, lokalizacja: str):
++        self.imie = imie
++        self.nazwisko = nazwisko
++        self.posty = posty
++        self.lokalizacja = lokalizacja
++        self.coordinates = User.get_coordinates(self)
++
++        self.marker = map_widget.set_marker(self.coordinates[0], self.coordinates[1], text=self.imie)
++
++    def get_coordinates(self) -> list:
++        url = f"https://pl.wikipedia.org/wiki/{self.lokalizacja}"
++        response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
++        response_html = BeautifulSoup(response.text, 'html.parser')
++        latitude = float(response_html.select(".latitude")[1].text.replace(",", "."))
++        longitude = float(response_html.select(".longitude")[1].text.replace(",", "."))
++        return [latitude, longitude]
++
++
++def show_users() -> None:
++    listbox_lista_obiektow.delete(0, END)
++    for idx, user in enumerate(users):
++        listbox_lista_obiektow.insert(idx, user.imie)
++
++
++def remove_user() -> None:
++    i = listbox_lista_obiektow.index(ACTIVE)
++    users[i].marker.delete()
++    users.pop(i)
++    show_users()
++
++
++def show_user_details():
++    i = listbox_lista_obiektow.index(ACTIVE)
++    imie = users[i].imie
++    nazwisko = users[i].nazwisko
++    posty = users[i].posty
++    lokalizacja = users[i].lokalizacja
++
++    label_imie_szczegoly_obiektu_wartosc.config(text=imie)
++    label_nazwisko_szczegoly_obiektu_wartosc.config(text=nazwisko)
++    label_liczba_postow_szczegoly_obiektu_wartosc.config(text=posty)
++    label_lokalizacja_szczegoly_obiektu_wartosc.config(text=lokalizacja)
++    map_widget.set_position(users[i].coordinates[0], users[i].coordinates[1])
++    map_widget.set_zoom(12)
++
++
++def edit_user():
++    i = listbox_lista_obiektow.index(ACTIVE)
++    imie = users[i].imie
++    nazwisko = users[i].nazwisko
++    posty = users[i].posty
++    lokalizacja = users[i].lokalizacja
++
++    entry_imie.insert(0, imie)
++    entry_nazwisko.insert(0, nazwisko)
++    entry_liczba_postow.insert(0, posty)
++    entry_lokalizacja.insert(0, lokalizacja)
++
++    button_dodaj_uzytkownika.config(text="Zapisz zmiany", command=lambda: update_user(i))
++
++
++def update_user(i):
++    users[i].imie = entry_imie.get()
++    users[i].nazwisko = entry_nazwisko.get()
++    users[i].posty = entry_liczba_postow.get()
++    users[i].lokalizacja = entry_lokalizacja.get()
++    users[i].coordinates = User.get_coordinates(users[i])
++    users[i].marker.delete()
++    users[i].marker = map_widget.set_marker(users[i].coordinates[0], users[i].coordinates[1], text=users[i].imie)
++
++    button_dodaj_uzytkownika.config(text="Dodaj uzytkownika", command=add_user)
++    entry_imie.delete(0, END)
++    entry_nazwisko.delete(0, END)
++    entry_liczba_postow.delete(0, END)
++    entry_lokalizacja.delete(0, END)
++
++    entry_imie.focus()
++    show_users()
++
++
++def add_user():
++    name = entry_imie.get()
++    surname = entry_nazwisko.get()
++    posts = entry_liczba_postow.get()
++    lokalizacja = entry_lokalizacja.get()
++
++    # print(name, surname, posts, lokalizacja)
++    new_user = User(imie=name, nazwisko=surname, posty=int(posts), lokalizacja=lokalizacja)
++    users.append(new_user)
++    # print(users)
++
++    entry_imie.delete(0, END)
++    entry_nazwisko.delete(0, END)
++    entry_liczba_postow.delete(0, END)
++    entry_lokalizacja.delete(0, END)
++
++    entry_imie.focus()
++    show_users()
++
++
++root = Tk()
++
++root.title("Mapbook_AB")
++root.geometry("1024x760")
++
++# FRAME
++ramka_lista_obiektow = Frame(root)
++ramka_formularz = Frame(root)
++ramka_szczegoly_obiektu = Frame(root)
++ramka_mapa = Frame(root)
++
++ramka_lista_obiektow.grid(row=0, column=0, padx=50)
++ramka_formularz.grid(row=0, column=1)
++ramka_szczegoly_obiektu.grid(row=1, column=0, columnspan=2, padx=50,pady=50)
++ramka_mapa.grid(row=2, column=0, columnspan=2)
++
++# RAMKA LISTA OBIEKTOW
++label_lista_obiektow = Label(ramka_lista_obiektow, text="Lista znajomych: ")
++listbox_lista_obiektow = Listbox(ramka_lista_obiektow)
++
++button_pokaz_szczegoly_obiektu = Button(ramka_lista_obiektow, text="Pokaz szczegoly", command=show_user_details)
++button_usun_obiekt = Button(ramka_lista_obiektow, text="Usun", command=remove_user)
++button_edytuj_obiekt = Button(ramka_lista_obiektow, text="Edytuj", command=edit_user)
++
++label_lista_obiektow.grid(row=0, column=0)
++listbox_lista_obiektow.grid(row=1, column=0)
++button_pokaz_szczegoly_obiektu.grid(row=2, column=0)
++button_usun_obiekt.grid(row=2, column=1)
++button_edytuj_obiekt.grid(row=2, column=2)
++
++# RAMKA FORMULARZ
++
++label_formularz = Label(ramka_formularz, text="Formularz: ")
++label_imie = Label(ramka_formularz, text="Imię: ")
++label_nazwisko = Label(ramka_formularz, text="Nazwisko: ")
++label_liczba_postow = Label(ramka_formularz, text="Liczba postow: ")
++label_lokalizacja = Label(ramka_formularz, text="Lokalizacja: ")
++
++label_formularz.grid(row=0, column=0, columnspan=2)
++label_imie.grid(row=1, column=0, sticky=W)
++label_nazwisko.grid(row=2, column=0, sticky=W)
++label_liczba_postow.grid(row=3, column=0, sticky=W)
++label_lokalizacja.grid(row=4, column=0, sticky=W)
++
++entry_imie = Entry(ramka_formularz)
++entry_nazwisko = Entry(ramka_formularz)
++entry_liczba_postow = Entry(ramka_formularz)
++entry_lokalizacja = Entry(ramka_formularz)
++
++entry_imie.grid(row=1, column=1)
++entry_nazwisko.grid(row=2, column=1)
++entry_liczba_postow.grid(row=3, column=1)
++entry_lokalizacja.grid(row=4, column=1)
++
++button_dodaj_uzytkownika = Button(ramka_formularz, text="Dodaj użytkownika", command=add_user)
++button_dodaj_uzytkownika.grid(row=5, column=0, columnspan=2)
++
++# SZCZEGOLY OBIEKTU
++
++label_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Szczegóły użytkownika")
++label_imie_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Imię: ")
++label_imie_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text="...")
++label_nazwisko_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Nazwisko: ")
++label_nazwisko_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text="...")
++label_liczba_postow_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Liczba postów: ")
++label_liczba_postow_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text="...")
++label_lokalizacja_szczegoly_obiektu = Label(ramka_szczegoly_obiektu, text="Lokalizacja: ")
++label_lokalizacja_szczegoly_obiektu_wartosc = Label(ramka_szczegoly_obiektu, text="...")
++
++label_szczegoly_obiektu.grid(row=0, column=0,sticky=W)
++label_imie_szczegoly_obiektu.grid(row=1, column=0,sticky=W)
++label_imie_szczegoly_obiektu_wartosc.grid(row=1, column=1,sticky=W)
++label_nazwisko_szczegoly_obiektu.grid(row=1, column=2,sticky=W)
++label_nazwisko_szczegoly_obiektu_wartosc.grid(row=1, column=3,sticky=W)
++label_liczba_postow_szczegoly_obiektu.grid(row=1, column=4,sticky=W)
++label_liczba_postow_szczegoly_obiektu_wartosc.grid(row=1, column=5,sticky=W)
++label_lokalizacja_szczegoly_obiektu.grid(row=1, column=6,sticky=W)
++label_lokalizacja_szczegoly_obiektu_wartosc.grid(row=1, column=7,sticky=W)
++
++# ramka mapa
++map_widget = tkintermapview.TkinterMapView(ramka_mapa, width=1024, height=600, corner_radius=4)
++map_widget.set_zoom(6)
++map_widget.set_position(52.2, 21.0)
++
++map_widget.grid(row=0, column=0)
++
++root.mainloop()
++
++
++
++### ROBIMY COMMITA NAD PUSH MAIN.
++## PULL REQUEST TESTOWy
++## PULL REQUEST QA
++## PULL REQUEST ENV
++## PULL REQUEST main
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1779258162228)
++++ b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch	(date 1779258162228)
+@@ -0,0 +1,59 @@
++Index: main.py
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+># Definicja prostej struktury danych obejmującej przykładowego użytkownika\r\n\r\nfrom mapbook_lib.model import users\r\nfrom mapbook_lib.controller import read_users, add_user, remove_user, update_user_post, update_user\r\n\r\ndef main():\r\n\r\n\r\n    while True:\r\n        print(\"===========MENU===========\")\r\n        print(\"0 - zakończ program\")\r\n        print(\"1 - wyświetl znajomych\")\r\n        print(\"2 - dodanie znajomego\")\r\n        print(\"3 - usuń znajomego\")\r\n        print(\"4 - aktualizacja znajomego\")\r\n        print(\"5 - aktualizacja posta\")\r\n        choice=input(\"Wybierz opcje menu:  \")\r\n        print(f\"Wybrano opcje {choice}\")\r\n        if choice == \"0\":\r\n            break\r\n\r\n        if choice == \"1\":\r\n            read_users(users)\r\n\r\n        if choice == \"2\":\r\n            add_user(users)\r\n\r\n        if choice == \"3\":\r\n            remove_user(users)\r\n\r\n        if choice == \"4\":\r\n            update_user(users)\r\n\r\n        if choice == \"5\":\r\n            update_user_post(users)\r\n\r\nif __name__ == \"__main__\":\r\n    main()\r\n
++===================================================================
++diff --git a/main.py b/main.py
++--- a/main.py	(revision 9208863e311f7042d4c9abecb5dcdf67804a6203)
+++++ b/main.py	(date 1779179913394)
++@@ -14,6 +14,7 @@
++         print("3 - usuń znajomego")
++         print("4 - aktualizacja znajomego")
++         print("5 - aktualizacja posta")
+++        print("6 - mapa znajomych")
++         choice=input("Wybierz opcje menu:  ")
++         print(f"Wybrano opcje {choice}")
++         if choice == "0":
++@@ -34,5 +35,8 @@
++         if choice == "5":
++             update_user_post(users)
++ 
+++        if choice == "6":
+++            
+++
++ if __name__ == "__main__":
++     main()
++Index: mapbook_lib/controller.py
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+>\r\ndef read_users(users_data:list)->None:\r\n    for user in users_data:\r\n        print(f\"Twój znajomy {user[\"Name\"]}, z miejscowośći {user[\"Location\"]}, zamieścił post {user[\"Posts\"][-1]}\")\r\nread_users(users)\r\n\r\ndef add_user(users_data:list)->None:\r\n    users_data.append({\"Name\":input(\"Podaj imię  \"),\"Location\":input(\"Twoja Lokalizacja  \"), \"Posts\":input(\"Dołączono do znajomych  \")})\r\n\r\ndef remove_user(users_data:list)->None:\r\n    user_to_remove = input(\"Podaj imię znajomego do usunięcia  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_remove:\r\n            user.data.remove(user)\r\n\r\n\r\ndef update_user(users_data:list)->None:\r\n    user_to_update = input(\"Podaj imię znajomego do updatu  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_update:\r\n            user[\"Name\"] ==(input(\"Podaj nowe imię użytkownika \"),\r\n            user[\"Location\"] ==(input(\"Podaj nową lokalizacje \"),\r\n            user[\"Location\"] ==(input(\"Podaj nowe lokalizacje \")\r\ndef update_user_post(users_data:list)->None:\r\n    user_to_update = input(\"Podaj imię znajomego do updatu  \")\r\n    for user in users_data:\r\n        if user[\"Name\"] == user_to_update:\r\n            user [\"Posts\"].append(input(\"Co słychać  \"))\r\n\r\n
++===================================================================
++diff --git a/mapbook_lib/controller.py b/mapbook_lib/controller.py
++--- a/mapbook_lib/controller.py	(revision 9208863e311f7042d4c9abecb5dcdf67804a6203)
+++++ b/mapbook_lib/controller.py	(date 1779179220261)
++@@ -1,8 +1,7 @@
++ 
++ def read_users(users_data:list)->None:
++     for user in users_data:
++-        print(f"Twój znajomy {user["Name"]}, z miejscowośći {user["Location"]}, zamieścił post {user["Posts"][-1]}")
++-read_users(users)
+++        print(f"Twój znajomy {user['Name']}, z miejscowości {user['Location']}, zamieścił post {user['Posts'][-1]}")
++ 
++ def add_user(users_data:list)->None:
++     users_data.append({"Name":input("Podaj imię  "),"Location":input("Twoja Lokalizacja  "), "Posts":input("Dołączono do znajomych  ")})
++@@ -18,11 +17,12 @@
++     user_to_update = input("Podaj imię znajomego do updatu  ")
++     for user in users_data:
++         if user["Name"] == user_to_update:
++-            user["Name"] ==(input("Podaj nowe imię użytkownika "),
++-            user["Location"] ==(input("Podaj nową lokalizacje "),
++-            user["Location"] ==(input("Podaj nowe lokalizacje ")
+++            user["Name"] = input("Podaj nowe imię użytkownika: ")
+++            user["Location"] = input("Podaj nową lokalizację: ")
+++
++ def update_user_post(users_data:list)->None:
++     user_to_update = input("Podaj imię znajomego do updatu  ")
+++
++     for user in users_data:
++         if user["Name"] == user_to_update:
++             user ["Posts"].append(input("Co słychać  "))
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1779258162252)
++++ b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch	(date 1779258162252)
+@@ -0,0 +1,29 @@
++Index: NOTATNIK.py
++===================================================================
++diff --git a/NOTATNIK.py b/NOTATNIK.py
++new file mode 100644
++--- /dev/null	(date 1778144821667)
+++++ b/NOTATNIK.py	(date 1778144821667)
++@@ -0,0 +1,7 @@
+++from bs4 import BeautifulSoup
+++import requests
+++
+++uml = "https://pl.wikipedia.org/wiki/Łomża"
+++responses = requests.get(uml, headers={'User-Agent': 'Mozilla/5.0'})
+++print(responses)
+++
++Index: mapbook_lib/mapa_znajomych.py
++===================================================================
++diff --git a/mapbook_lib/mapa_znajomych.py b/mapbook_lib/mapa_znajomych.py
++new file mode 100644
++--- /dev/null	(date 1779180060348)
+++++ b/mapbook_lib/mapa_znajomych.py	(date 1779180060348)
++@@ -0,0 +1,7 @@
+++from bs4 import BeautifulSoup
+++import requests
+++import folium
+++
+++def get_coordinates(location: str) -> list
+++    url =f"https://pl.wikipedia.org/wiki/{location}"
+++    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
++\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_.xml
+new file mode 100644
+--- /dev/null	(date 1779258457592)
++++ b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_.xml	(date 1779258457592)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]" date="1779258153809" recycled="false" toDelete="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 20.05.2026 08:22 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1778136614887)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1778136614887)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_1.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_1.xml
+new file mode 100644
+--- /dev/null	(date 1779258457595)
++++ b/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_1.xml	(date 1779258457595)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1" date="1779258162252" recycled="true" deleted="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 20.05.2026 08:22 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: .idea/MAPBOOK_BC.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/MAPBOOK_BC.iml b/.idea/MAPBOOK_BC.iml
+new file mode 100644
+--- /dev/null	(date 1778136614808)
++++ b/.idea/MAPBOOK_BC.iml	(date 1778136614808)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++    </content>
++    <orderEntry type="jdk" jdkName="Python 3.14 (MAPBOOK_BC)" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1778136614825)
++++ b/.idea/modules.xml	(date 1778136614825)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/MAPBOOK_BC.iml" filepath="$PROJECT_DIR$/.idea/MAPBOOK_BC.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1778136614858)
++++ b/.idea/misc.xml	(date 1778136614858)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.14" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.14 (MAPBOOK_BC)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1778136614868)
++++ b/.idea/vcs.xml	(date 1778136614868)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	(date 1779344168201)
++++ b/.idea/workspace.xml	(date 1779344168201)
+@@ -0,0 +1,346 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ChangeListManager">
++    <list default="true" id="3f36e0b7-d823-4fc6-b55d-7f086853a8ab" name="Changes" comment="feat : interactive map of users&#10;&#10;LABY aplikacja w konsoli">
++      <change afterPath="$PROJECT_DIR$/.idea/MAPBOOK_BC.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22_[Changes]1/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2026_08_22__Changes_1.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Mapbook_lib_lab/mapa_znajomych.html" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/mapbook_lib/uzytkownicy.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/zapasowy.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/mapbook_lib/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/mapbook_lib/main.py" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Python Script" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="feat-env-test-data-structure" />
++      </map>
++    </option>
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {}
++}</component>
++  <component name="GitHubPullRequestState">{
++  &quot;prStates&quot;: [
++    {
++      &quot;id&quot;: {
++        &quot;id&quot;: &quot;PR_kwDOSWku7M7ZEcMZ&quot;,
++        &quot;number&quot;: 9
++      },
++      &quot;lastSeen&quot;: 1779321093795
++    }
++  ]
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/Barleee/MAPBOOK_BC.git&quot;,
++    &quot;accountId&quot;: &quot;6d8cbde3-66a8-4408-a51a-948f22926176&quot;
++  },
++  &quot;recentNewPullRequestHead&quot;: {
++    &quot;server&quot;: {
++      &quot;useHttp&quot;: false,
++      &quot;host&quot;: &quot;github.com&quot;,
++      &quot;port&quot;: null,
++      &quot;suffix&quot;: null
++    },
++    &quot;owner&quot;: &quot;Barleee&quot;,
++    &quot;repository&quot;: &quot;MAPBOOK_BC&quot;
++  }
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 2,
++  &quot;fromUser&quot;: false
++}</component>
++  <component name="ProjectId" id="3DNxWN8o41lKmuRT6epYGyTsnFZ" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Python.NOTATNIK.executor&quot;: &quot;Run&quot;,
++    &quot;Python.controller.executor&quot;: &quot;Run&quot;,
++    &quot;Python.lokalizacja.executor&quot;: &quot;Run&quot;,
++    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
++    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
++    &quot;Python.main (3).executor&quot;: &quot;Run&quot;,
++    &quot;Python.main.executor&quot;: &quot;Run&quot;,
++    &quot;Python.uzytkownicy.executor&quot;: &quot;Run&quot;,
++    &quot;Python.zapasowy.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;feet-main-gui&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  },
++  &quot;keyToStringList&quot;: {
++    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
++      &quot;TEXT&quot;
++    ]
++  }
++}</component>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\barle\PycharmProjects\PPT\MAPBOOK_BC" />
++    </key>
++  </component>
++  <component name="RunManager" selected="Python.main (3)">
++    <configuration name="controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="MAPBOOK_BC" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mapbook_lib_lab" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mapbook_lib_lab/controller.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="lokalizacja" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="MAPBOOK_BC" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mapbook_lib_lab" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mapbook_lib_lab/lokalizacja.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="MAPBOOK_BC" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mapbook_lib(laby)" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mapbook_lib(laby)/main.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="main (3)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="MAPBOOK_BC" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mapbook_lib_lab" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mapbook_lib_lab/main.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="zapasowy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="MAPBOOK_BC" />
++      <option name="ENV_FILES" value="" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
++      <option name="IS_MODULE_SDK" value="true" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="RUN_TOOL" value="" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zapasowy.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Python.main (3)" />
++        <item itemvalue="Python.controller" />
++        <item itemvalue="Python.lokalizacja" />
++        <item itemvalue="Python.main (2)" />
++        <item itemvalue="Python.zapasowy" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.32098.74" />
++        <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
++      </set>
++    </attachedChunks>
++  </component>
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="3f36e0b7-d823-4fc6-b55d-7f086853a8ab" name="Changes" comment="" />
++      <created>1778136360504</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1778136360504</updated>
++      <workItem from="1778136361755" duration="7540000" />
++      <workItem from="1779178034010" duration="2400000" />
++      <workItem from="1779181994069" duration="806000" />
++      <workItem from="1779257291066" duration="41000" />
++      <workItem from="1779257707671" duration="9378000" />
++      <workItem from="1779267199825" duration="2139000" />
++      <workItem from="1779316470758" duration="4769000" />
++    </task>
++    <task id="LOCAL-00001" summary="Feat : prepared tata structue, implamented CRUD,  functionalities based on users data">
++      <option name="closed" value="true" />
++      <created>1778141000454</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1778141000454</updated>
++    </task>
++    <task id="LOCAL-00002" summary="chare: Refactioring project structure to mvc">
++      <option name="closed" value="true" />
++      <created>1778142993661</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1778142993661</updated>
++    </task>
++    <task id="LOCAL-00003" summary="feat: gui">
++      <option name="closed" value="true" />
++      <created>1779261496099</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1779261496099</updated>
++    </task>
++    <task id="LOCAL-00004" summary="feat : interactive map of users&#10;&#10;LABY aplikacja w konsoli">
++      <option name="closed" value="true" />
++      <created>1779320926653</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1779320926653</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="origin/endqa" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Feat : prepared tata structue, implamented CRUD,  functionalities based on users data" />
++    <MESSAGE value="chare: Refactioring project structure to mvc" />
++    <MESSAGE value="feat: gui" />
++    <MESSAGE value="feat : interactive map of users&#10;&#10;LABY aplikacja w konsoli" />
++    <option name="LAST_COMMIT_MESSAGE" value="feat : interactive map of users&#10;&#10;LABY aplikacja w konsoli" />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$zapasowy.coverage" NAME="zapasowy Coverage Results" MODIFIED="1779269169937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$lokalizacja.coverage" NAME="lokalizacja Coverage Results" MODIFIED="1779318832734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mapbook_lib_lab" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$main__2_.coverage" NAME="main (2) Coverage Results" MODIFIED="1779317009213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mapbook_lib(laby)" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$NOTATNIK.coverage" NAME="NOTATNIK Coverage Results" MODIFIED="1778144452118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$uzytkownicy.coverage" NAME="uzytkownicy Coverage Results" MODIFIED="1779266265234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mapbook_lib" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$controller.coverage" NAME="controller Coverage Results" MODIFIED="1779320306327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mapbook_lib_lab" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$main__3_.coverage" NAME="main (3) Coverage Results" MODIFIED="1779320507561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mapbook_lib_lab" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$main.coverage" NAME="main Coverage Results" MODIFIED="1779258418109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/MAPBOOK_BC$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1779264099772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mapbook_lib" />
++  </component>
++</project>
+\ No newline at end of file
